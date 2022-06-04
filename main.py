@@ -63,14 +63,12 @@ def findSimilarWordsFor(word):
                                          for item in similarFoundWords)  # تبدیل لیست به رشته
         return similarFoundWords_str
 
-    for i in range(word_len):
-        if i != 0:
-            compareTwoWords(word, word_len - i, similarFoundWords)
+    for i in range(word_len - requested_edit_distance, word_len + requested_edit_distance + 1):
+        if i != word_len:
+            compareTwoWords(word, i, similarFoundWords)
             if (len(similarFoundWords) == requested_number_of_suggestions):
                 break
-            compareTwoWords(word, word_len + i, similarFoundWords)
-            if (len(similarFoundWords) == requested_number_of_suggestions):
-                break
+
 
     similarFoundWords_str = ' '.join(
         str(item) for item in similarFoundWords)  # تبدیل لیست به رشته
